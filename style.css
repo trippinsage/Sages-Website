@@ -1,131 +1,650 @@
-/* General Reset */
-*, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+/* ===============================
+   RESET & BASE STYLES
+   =============================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-
-/* Base Styling */
+html {
+  scroll-behavior: smooth;
+}
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #e6f7fa; /* Soft pastel blue for background */
-    color: #555; /* Softer dark gray for text */
-    text-align: center;
-    overflow-x: hidden;
-    line-height: 1.6;
+  font-family: 'Poppins', sans-serif;
+  background-color: #e6f7fa;
+  color: #555;
+  line-height: 1.6;
+  text-align: center;
+  overflow-x: hidden;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+button {
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+/* Hidden class */
+.hidden {
+  display: none !important;
 }
 
-/* Header Styling */
-header {
-    margin-bottom: 30px;
-    padding: 50px 0;
-    color: #fff;
-    background: linear-gradient(135deg, #a2d5f2, #87c4e7); /* Soft gradient of pastel blues */
+/* Fade-in Animation */
+.fade-in {
+  animation: fadeIn 1s ease-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-header h1 {
-    font-size: 2.8rem;
-    color: #fff; /* Muted aquarium blue for text */
-    margin-bottom: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+/* ===============================
+   HEADER (INDEX)
+   =============================== */
+.site-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, #a2d5f2, #87c4e7);
+  padding: 20px;
 }
-
-/* Profile Image */
+.logo-and-title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
 .profile-img {
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    margin: 0 auto 20px;
-    display: block;
-    object-fit: cover;
-    object-position: center;
-    border: 4px solid #5ba4c7; /* Muted aquarium blue border */
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid #5ba4c7;
+  object-fit: cover;
+}
+.centered-name {
+  font-size: 1.8rem;
+  color: #fff;
+  margin-top: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* Navigation Styling */
-nav ul {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-    padding: 20px;
+/* ===============================
+   HERO (INDEX)
+   =============================== */
+.hero-section {
+  background-color: #c5e8f6;
+  padding: 40px 20px;
+}
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.hero-content h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+.hero-content p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+.donate-btn {
+  background-color: #ff7f50;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 24px;
+  border: none;
+}
+.donate-btn:hover {
+  background-color: #ff956a;
+  transform: translateY(-3px);
 }
 
-nav li {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #c5e8f6; /* Soft pastel blue background for buttons */
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    padding: 14px 20px;
+/* ===============================
+   SOCIAL NAV (INDEX)
+   =============================== */
+.social-nav {
+  background-color: #a2d5f2;
+  padding: 40px 20px;
 }
-
-nav li:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 6px 20px rgba(91, 164, 199, 0.4); /* Subtle shadow with aquarium blue tint */
+.social-nav h2 {
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
-
-nav a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    color: #4b8fa5; /* Softer blue for text */
-    font-size: 1.1rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
+.social-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
 }
-
-/* Social Icons */
+.social-links li {
+  display: flex;
+  align-items: center;
+  background: #c5e8f6;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  padding: 8px;
+}
+.social-links li:hover {
+  transform: translateY(-5px);
+}
 .social-icons {
-    width: 40px;
-    height: 40px;
-    margin-right: 12px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #87c4e7; /* Pastel aquarium blue for icons */
-    border-radius: 50%;
-    color: #fff;
-    font-size: 1.5rem;
-    overflow: hidden;
+  width: 40px;
+  height: 40px;
+  background-color: #87c4e7;
+  border-radius: 50%;
+  overflow: hidden;
 }
-
 .social-icons img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.social-info {
+  margin-top: 15px;
+  font-size: 0.95rem;
 }
 
-/* Footer Styling */
+/* ===============================
+   VIVARIUM MANAGER (INDEX)
+   =============================== */
+.downloads-section {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+.downloads-section h2 {
+  font-size: 1.6rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+.downloads-carousel {
+  position: relative;
+  overflow: hidden;
+}
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s;
+  justify-content: center;
+}
+.download-item {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.download-item h3 {
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+.download-btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+.download-btn {
+  background-color: #87c4e7;
+  color: #333;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+}
+.download-btn:hover {
+  background-color: #72b5d5;
+  transform: translateY(-3px);
+}
+.web-btn {
+  background-color: #ff7f50;
+  color: #fff;
+}
+.web-btn:hover {
+  background-color: #ff956a;
+}
+
+/* ===============================
+   FOOTER
+   =============================== */
 footer {
-    margin-top: 40px;
-    padding: 15px 0;
-    background-color: #87c4e7; /* Matching pastel blue for footer */
-    color: #555;
-    font-size: 0.9rem;
+  background-color: #333;
+  color: #fff;
+  padding: 15px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+.footer-links {
+  margin-top: 5px;
+}
+.footer-links a {
+  color: #fff;
+  font-size: 0.85rem;
+  text-decoration: underline;
 }
 
-/* Responsive Design */
+/* ===============================
+   MANAGER PAGE STYLES
+   =============================== */
+.manager-container {
+  max-width: 1000px;
+  margin: 30px auto;
+  background-color: #fff;
+  color: #333;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  padding-bottom: 20px;
+}
+
+/* Header with Menu controls */
+.manager-header {
+  display: flex;
+  align-items: center;
+  background-color: #87c4e7;
+  padding: 10px 20px;
+  color: #fff;
+  gap: 20px;
+  position: relative;
+}
+.header-left {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.menu-btn {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-right: 8px;
+}
+.data-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #000;
+  border: 1px solid #444;
+  border-radius: 4px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 100;
+}
+.data-menu .menu-item {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  text-align: left;
+}
+.data-menu .menu-item:hover {
+  background-color: #444;
+}
+
+/* Top toolbar */
+.top-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+.top-toolbar h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+.tab-bar {
+  margin: 15px 20px 10px;
+  display: flex;
+  gap: 10px;
+}
+.tab-btn {
+  background-color: #c5e8f6;
+  border: none;
+  padding: 8px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+.tab-btn:hover {
+  background-color: #a2d5f2;
+}
+.tab-content {
+  background-color: #f9f9f9;
+  padding: 15px 20px;
+  border-radius: 6px;
+}
+
+/* Dynamic Tabs for Vivarium Details */
+.dynamic-tab-bar {
+  display: flex;
+  gap: 5px;
+  margin: 20px auto 10px;
+  max-width: 800px;
+  overflow-x: auto;
+}
+.dynamic-tab-header {
+  background-color: #c5e8f6;
+  border: 1px solid #aaa;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.dynamic-tab-header.active {
+  background-color: #87c4e7;
+  color: #fff;
+}
+.dynamic-tab-close {
+  background: none;
+  border: none;
+  color: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
+.dynamic-tab-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.dynamic-tab-content-item {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 15px;
+  margin-top: 10px;
+  text-align: left;
+}
+
+/* Vivarium Detail (inside dynamic tabs) */
+.aquarium-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.aquarium-form input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+.aquarium-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.aq-list-item {
+  background-color: #fff;
+  margin-bottom: 5px;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Adjusted header layout for vivarium details */
+.aq-detail-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+  position: relative;
+}
+.aquarium-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
+.notes-area {
+  width: 100%;
+  height: 80px;
+  resize: vertical;
+  margin-top: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 6px;
+}
+
+/* New layout for fish rows: Name on top, controls below */
+.fish-row {
+  background-color: #fff;
+  margin-bottom: 8px;
+  padding: 6px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.fish-name-container {
+  font-weight: 600;
+  width: 100%;
+  white-space: normal;
+  word-break: break-word;
+  margin-bottom: 4px;
+  text-align: left;
+}
+.fish-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.fish-qty {
+  width: 60px;
+}
+
+/* Button container for fish row actions */
+.btn-container {
+  display: flex;
+  gap: 8px;
+}
+
+/* Add Inhabitant Form */
+.add-fish-form {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  align-items: center;
+}
+
+/* Log form */
+.log-form {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* Maintenance Table */
+.maintenance-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+.maintenance-table th,
+.maintenance-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+.maintenance-table th {
+  background-color: #eee;
+}
+
+/* Pagination Controls */
+.pagination-controls {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+/* Overlays */
+.overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.overlay-content {
+  background: #fff;
+  width: 300px;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: left;
+}
+.overlay-content h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.overlay-btn-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+.overlay-content label {
+  display: block;
+  margin-top: 10px;
+  font-weight: 600;
+}
+.overlay-content input,
+.overlay-content select {
+  width: 100%;
+  padding: 6px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Species Info Modal */
+.species-content {
+  max-width: 400px;
+}
+#species-info-img {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.modal-species-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+/* ===============================
+   RESPONSIVE STYLES (Mobile)
+   =============================== */
 @media (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-    }
-
-    .social-icons {
-        width: 35px;
-        height: 35px;
-    }
-
-    header h1 {
-        font-size: 2.2rem;
-    }
-
-    nav li {
-        width: 100%;
-    }
+  /* Header adjustments for dynamic tab header */
+  .aq-detail-header {
+       flex-direction: column;
+       align-items: flex-start;
+  }
+  .header-actions {
+       position: static;
+       margin-top: 8px;
+  }
+  .header-left {
+       display: flex;
+       align-items: center;
+       position: relative;
+  }
+  .data-menu {
+       position: absolute;
+       top: 100%;
+       left: 0;
+       background-color: #000;
+       border: 1px solid #444;
+       border-radius: 4px;
+       padding: 5px;
+       flex-direction: column;
+       gap: 5px;
+       z-index: 100;
+  }
+  .data-menu .menu-item {
+       background-color: transparent;
+       color: #fff;
+       border: none;
+       padding: 5px 10px;
+       text-align: left;
+  }
+  .data-menu .menu-item:hover {
+       background-color: #444;
+  }
+  .pagination-controls {
+       display: flex;
+       flex-direction: row;
+       justify-content: center;
+       gap: 10px;
+       margin-top: 10px;
+       margin-bottom: 10px;
+  }
+  .results-table th,
+  .results-table td {
+         padding: 8px;
+         font-size: 0.85rem;
+  }
+  .results-table td button {
+         margin: 4px;
+         padding: 8px 12px;
+         font-size: 0.9rem;
+  }
+  .maintenance-table {
+       display: block;
+       overflow-x: auto;
+       font-size: 0.8rem;
+  }
+  .maintenance-table th,
+  .maintenance-table td {
+       padding: 6px;
+  }
+  .log-form {
+       flex-wrap: wrap;
+  }
+  .log-form input {
+       flex: 1 1 100%;
+       margin-bottom: 8px;
+  }
+  button {
+       padding: 10px 14px;
+       font-size: 1rem;
+  }
+  .btn-theme, .btn-small {
+       padding: 8px 14px;
+  }
+  button:active {
+       transform: scale(0.97);
+  }
+  .aquarium-form input {
+       margin-bottom: 10px;
+  }
 }
