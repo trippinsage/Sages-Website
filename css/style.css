@@ -1,0 +1,396 @@
+/* Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:focus {
+  outline: 3px solid #3498db;
+  outline-offset: 2px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Utility Helpers */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+.site-header {
+  background-color: #3498db;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto;
+  border: 4px solid #fff;
+  transition: transform 0.3s;
+}
+
+.profile-img:hover,
+.profile-img:focus {
+  transform: scale(1.05);
+}
+
+.site-header h1 {
+  font-size: 2.5rem;
+  color: #fff;
+  margin-top: 15px;
+}
+
+/* Hero Section */
+.hero-section {
+  background-color: #ecf0f1;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.hero-section h2 {
+  font-size: 3rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.hero-section p {
+  font-size: 1.5rem;
+  color: #666;
+  margin: 10px 0;
+}
+
+/* Donate Button */
+.donate-btn {
+  display: inline-block;
+  background-color: #27ae60;
+  color: #fff !important; /* force white text */
+  font-size: 1.2rem;
+  padding: 15px 30px;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  margin-top: 20px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.donate-btn:hover,
+.donate-btn:focus {
+  background-color: #1e8449;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  color: #fff; /* ensure hover also white */
+}
+
+/* Social Section */
+.social-section {
+  padding: 50px 20px;
+  background-color: #f5f5f5;
+  text-align: center;
+}
+
+.social-section h2 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+.social-item {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 300px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.social-item:hover,
+.social-item:focus-within {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.social-item img {
+  width: 60px;
+  height: 60px;
+  transition: transform 0.3s;
+  margin: 0 auto 10px; /* center the icon */
+}
+
+.social-item:hover img,
+.social-item:focus-within img {
+  transform: rotate(10deg) scale(1.1);
+}
+
+.social-item h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 10px 0;
+}
+
+.social-item p {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Journey Section */
+.journey-section {
+  padding: 50px 20px;
+  background-color: #ecf0f1;
+  text-align: center;
+}
+
+.journey-section h2 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.journey-section p {
+  font-size: 1.2rem;
+  color: #666;
+  margin: 0 auto 30px;
+  max-width: 800px;
+}
+
+.gallery {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.gallery figure {
+  margin: 0;
+  text-align: center;
+}
+
+.gallery img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.gallery img:hover,
+.gallery img:focus {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.gallery figcaption {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Footer */
+.site-footer {
+  background-color: #333;
+  padding: 30px 20px;
+  text-align: center;
+  margin-top: auto;
+}
+
+.social-icons {
+  margin-bottom: 20px;
+}
+
+.social-icons a {
+  margin: 0 10px;
+  display: inline-block;
+  transition: transform 0.3s;
+}
+
+.social-icons a:hover,
+.social-icons a:focus {
+  transform: scale(1.2);
+}
+
+.social-icons img {
+  width: 30px;
+  height: 30px;
+  transition: filter 0.3s;
+  margin: 0 auto; /* center icon */
+}
+
+.social-icons a:hover img,
+.social-icons a:focus img {
+  filter: invert(70%) sepia(100%) saturate(500%) hue-rotate(180deg);
+}
+
+.site-footer p {
+  font-size: 1rem;
+  color: #fff;
+  margin: 5px 0;
+}
+
+.site-footer a {
+  color: #27ae60;
+  transition: color 0.3s;
+}
+
+.site-footer a:hover,
+.site-footer a:focus {
+  color: #1e8449;
+  text-decoration: underline;
+}
+
+/* Legal Page */
+.legal-nav {
+  background-color: #3498db;
+  padding: 10px;
+  text-align: center;
+}
+
+.legal-nav a {
+  color: #fff;
+  font-size: 1.2rem;
+  transition: color 0.3s;
+}
+
+.legal-nav a:hover,
+.legal-nav a:focus {
+  color: #ecf0f1;
+}
+
+.legal-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.legal-container h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.legal-container h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin: 20px 0 10px;
+}
+
+.legal-container hr {
+  border: 0;
+  height: 1px;
+  background: #ccc;
+  margin: 20px 0;
+}
+
+.legal-container p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.legal-container a {
+  color: #3498db;
+}
+
+.legal-container a:hover,
+.legal-container a:focus {
+  text-decoration: underline;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .profile-img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .site-header h1 {
+    font-size: 2rem;
+  }
+
+  .hero-section h2 {
+    font-size: 2.5rem;
+  }
+
+  .hero-section p {
+    font-size: 1.2rem;
+  }
+
+  .donate-btn {
+    padding: 10px 20px;
+  }
+
+  .social-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .journey-section h2 {
+    font-size: 2rem;
+  }
+
+  .journey-section p {
+    font-size: 1rem;
+  }
+
+  .gallery {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .gallery img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+  }
+
+  .social-icons img {
+    width: 25px;
+    height: 25px;
+  }
+
+  .legal-container h1 {
+    font-size: 2rem;
+  }
+
+  .legal-container h2 {
+    font-size: 1.5rem;
+  }
+}

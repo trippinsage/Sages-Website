@@ -1,90 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Basic Meta -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Trippin Sage - Passion. Perseverance. Connection. Explore the world, have fun, develop innovative tools, and build an unstoppable team." />
+
+  <!-- Primary SEO Meta Tags -->
+  <title>Trippin Sage | Aquariums, Gaming, Chill Vibes & Creator Life</title>
+  <meta name="description" content="Join Trippin Sage for daily aquarium setups, gaming streams, chill vibes, and business insights. Follow on TikTok & Instagram for epic fishkeeping, reptile care, and lifestyle tips!" />
+  <meta name="keywords" content="aquarium hobby, fishkeeping, reptiles, gaming lifestyle, chill vibes, TikTok influencer, Instagram creator, business mindset, Trippin Sage" />
   <meta name="author" content="Trippin Sage" />
   <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://trippinsage.com/" />
 
-  <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="Trippin Sage - Passion. Perseverance. Connection." />
-  <meta property="og:description" content="Explore the world, have fun, develop innovative tools, and build an unstoppable team." />
+  <!-- Internationalization -->
+  <link rel="alternate" href="https://trippinsage.com/" hreflang="en-us" />
+  <link rel="alternate" href="https://trippinsage.com/es/" hreflang="es-es" />
+  <link rel="alternate" href="https://trippinsage.com/pt/" hreflang="pt-br" />
+  <link rel="alternate" href="https://trippinsage.com/fr/" hreflang="fr-fr" />
+
+  <!-- Performance: Preconnect & Preload Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" type="image/png" href="favicon.png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
+  <meta property="og:title" content="Trippin Sage | Aquariums, Gaming & Chill Vibes" />
+  <meta property="og:description" content="Follow Trippin Sage for the ultimate aquarium setups, gaming streams, and chill lifestyle content. Reptiles, fish, business vibes, and more!" />
+  <meta property="og:url" content="https://trippinsage.com/" />
+  <meta property="og:image" content="https://trippinsage.com/og-image.jpg" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="Trippin Sage" />
+
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@TrippinSage" />
+  <meta name="twitter:creator" content="@TrippinSage" />
+  <meta name="twitter:title" content="Trippin Sage | Fishkeeping, Gaming & Chill Lifestyle" />
+  <meta name="twitter:description" content="Dive into fish tanks, gaming streams, chill vibes, and business tips. Follow on TikTok & Instagram now!" />
+  <meta name="twitter:image" content="https://trippinsage.com/twitter-image.jpg" />
 
-  <title>Trippin Sage - Passion. Perseverance. Connection.</title>
-  <link rel="icon" type="image/png" href="favicon.png" />
+  <!-- Schema.org JSON‑LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Trippin Sage",
+    "url": "https://trippinsage.com/",
+    "sameAs": [
+      "https://www.tiktok.com/@TrippinSage",
+      "https://www.instagram.com/TrippinSage",
+      "https://www.youtube.com/TrippinSage",
+      "https://www.twitch.tv/TrippinSage"
+    ],
+    "description": "Content creator sharing aquariums, gaming streams, chill vibes, and business insights.",
+    "image": "https://trippinsage.com/profile.jpg"
+  }
+  </script>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
 
-  <!-- Main CSS -->
-  <link rel="stylesheet" href="style.css" />
+  <!-- Main JS (deferred) -->
+  <script defer src="js/main.js"></script>
 </head>
-<body id="top">
-  <!-- HEADER -->
-  <header class="site-header fade-in">
-    <div class="logo-and-title">
-      <img src="your-profile-image.png" alt="Profile of Trippin Sage" class="profile-img" />
-    </div>
-    <h1 class="centered-name">Trippin Sage</h1>
+
+<body>
+  <!-- Site Header -->
+  <header class="site-header" role="banner">
+    <img 
+      src="Images/your-profile-image.png" 
+      alt="Headshot of Trippin Sage" 
+      class="profile-img" 
+      loading="lazy" 
+      width="120" 
+      height="120"
+    >
+    <h1 class="site-title">Trippin Sage</h1>
   </header>
 
-  <!-- HERO SECTION -->
-  <section class="hero-section fade-in">
-    <div class="hero-content">
-      <h2>Passion. Perseverance. Connection.</h2>
-      <p>
-        Welcome to <strong>Sages Hangout!</strong> We believe in overcoming challenges, loving what we do, and sharing our journey with the world.
-      </p>
+  <!-- Hero Section -->
+  <section id="hero" class="hero-section" aria-labelledby="hero-heading">
+    <h2 id="hero-heading">WELCOME</h2>
+    <p>I’m Trippy — animal lover &amp; content creator. Owning tons of reptiles, fish, and a few cats with big attitudes.</p>
+    <p>My wife and I share this wild little world together, and we love letting people in on the journey.</p>
+  </section>  
+
+  <!-- Social Links Section -->
+  <section id="connect" class="social-section" aria-labelledby="connect-heading">
+    <h2 id="connect-heading">Connect with Me</h2>
+    <div class="social-grid">
+      <!-- TikTok -->
+      <div class="social-item">
+        <a 
+          href="https://www.tiktok.com/@trippinsage" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          aria-label="Trippin Sage on TikTok"
+        >
+          <img 
+            src="Images/tiktok-logo.png" 
+            alt="TikTok logo" 
+            loading="lazy" 
+            width="48" 
+            height="48"
+          >
+          <h3>TikTok</h3>
+          <p>Short videos featuring my animals and care tips.</p>
+        </a>
+      </div>
+
+      <!-- YouTube -->
+      <div class="social-item">
+        <a 
+          href="https://www.youtube.com/channel/UC2mqNay3Cd2nolCfTJC_nBA" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          aria-label="Trippin Sage on YouTube"
+        >
+          <img 
+            src="Images/youtube-logo.png" 
+            alt="YouTube logo" 
+            loading="lazy" 
+            width="48" 
+            height="48"
+          >
+          <h3>YouTube</h3>
+          <p>In-depth tutorials and vlogs about animal care.</p>
+        </a>
+      </div>
+
+      <!-- Twitch -->
+      <div class="social-item">
+        <a 
+          href="https://www.twitch.tv/trippinsage" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          aria-label="Trippin Sage on Twitch"
+        >
+          <img 
+            src="Images/twitch-logo.png" 
+            alt="Twitch logo" 
+            loading="lazy" 
+            width="48" 
+            height="48"
+          >
+          <h3>Twitch</h3>
+          <p>Live streams of chilling, gaming and care routines.</p>
+        </a>
+      </div>
+
+      <!-- Instagram -->
+      <div class="social-item">
+        <a 
+          href="https://www.instagram.com/trippinsage" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          aria-label="Trippin Sage on Instagram"
+        >
+          <img 
+            src="Images/instagram-logo.png" 
+            alt="Instagram logo" 
+            loading="lazy" 
+            width="48" 
+            height="48"
+          >
+          <h3>Instagram</h3>
+          <p>Photos and stories of my daily life with animals, family &amp; friends.</p>
+        </a>
+      </div>
+
+      <!-- Discord -->
+      <div class="social-item">
+        <a 
+          href="https://discord.gg/sXMTqUN9sy" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          aria-label="Join Trippin Sage's Discord"
+        >
+          <img 
+            src="Images/discord-logo.png" 
+            alt="Discord logo" 
+            loading="lazy" 
+            width="48" 
+            height="48"
+          >
+          <h3>Discord</h3>
+          <p>Join my community to discuss animal care, business, life and more.</p>
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- CONNECT SECTION -->
-  <nav class="social-nav fade-in" aria-label="Connect">
-    <h2>Connect</h2>
-    <ul class="social-links">
-      <li>
-        <a href="https://www.tiktok.com/@trippinsage" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-          <img src="tiktok-logo.png" alt="TikTok logo" class="social-icons" />
-        </a>
-      </li>
-      <li>
-        <a href="https://www.youtube.com/channel/UC2mqNay3Cd2nolCfTJC_nBA" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-          <img src="youtube-logo.png" alt="YouTube logo" class="social-icons" />
-        </a>
-      </li>
-      <li>
-        <a href="https://www.twitch.tv/trippinsage" target="_blank" rel="noopener noreferrer" aria-label="Twitch">
-          <img src="twitch-logo.png" alt="Twitch logo" class="social-icons" />
-        </a>
-      </li>
-      <li>
-        <a href="https://www.instagram.com/trippinsage" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <img src="instagram-logo.png" alt="Instagram logo" class="social-icons" />
-        </a>
-      </li>
-      <li>
-        <a href="https://discord.gg/sXMTqUN9sy" target="_blank" rel="noopener noreferrer" aria-label="Discord">
-          <img src="discord-logo.png" alt="Discord logo" class="social-icons" />
-        </a>
-      </li>
-    </ul>
-    <p class="social-info">
-      Explore the world, have fun, develop innovative tools, and build an unstoppable team.
-    </p>
-  </nav>
+  <!-- Journey Gallery Section -->
+  <section id="journey" class="journey-section" aria-labelledby="journey-heading">
+    <h2 id="journey-heading">My Journey with Animals</h2>
+    <p>Discover the adventures and challenges of caring for reptiles, fish, and cats. Here are some highlights from my journey.</p>
+    <div class="gallery">
+      <figure>
+        <img 
+          src="Images/Peely.jpg" 
+          alt="Peely the reptile" 
+          loading="lazy" 
+          width="300" 
+          height="200"
+        >
+        <figcaption>Peely exploring his terrarium</figcaption>
+      </figure>
+      <figure>
+        <img 
+          src="Images/Honey-Gourami.jpg" 
+          alt="Honey Gourami fish" 
+          loading="lazy" 
+          width="300" 
+          height="200"
+        >
+        <figcaption>My vibrant Honey Gourami</figcaption>
+      </figure>
+      <figure>
+        <img 
+          src="Images/Teddy.jpg" 
+          alt="Teddy the cat" 
+          loading="lazy" 
+          width="300" 
+          height="200"
+        >
+        <figcaption>Teddy lounging on my desk</figcaption>
+      </figure>
+    </div>
+  </section>
 
-  <!-- (Vivarium Manager section has been removed) -->
-
-  <!-- FOOTER -->
-  <footer class="fade-in">
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="social-icons">
+      <a href="https://www.tiktok.com/@trippinsage" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+        <img src="Images/tiktok-logo.png" alt="TikTok logo" loading="lazy" width="32" height="32">
+      </a>
+      <a href="https://www.youtube.com/channel/UC2mqNay3Cd2nolCfTJC_nBA" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <img src="Images/youtube-logo.png" alt="YouTube logo" loading="lazy" width="32" height="32">
+      </a>
+      <a href="https://www.twitch.tv/trippinsage" target="_blank" rel="noopener noreferrer" aria-label="Twitch">
+        <img src="Images/twitch-logo.png" alt="Twitch logo" loading="lazy" width="32" height="32">
+      </a>
+      <a href="https://www.instagram.com/trippinsage" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <img src="Images/instagram-logo.png" alt="Instagram logo" loading="lazy" width="32" height="32">
+      </a>
+      <a href="https://discord.gg/sXMTqUN9sy" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+        <img src="Images/discord-logo.png" alt="Discord logo" loading="lazy" width="32" height="32">
+      </a>
+    </div>
+    <p>If you’ve been enjoying the ride and want to show some love, you can do that here.</p>
+    <a 
+      href="https://www.paypal.com/paypalme/sagetrippin" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      class="donate-btn"
+    >
+      Donate Now
+    </a>
     <p>&copy; 2025 Trippin Sage. All Rights Reserved.</p>
-    <p class="footer-links">
-      <a href="legal.html" target="_blank">Privacy Policy &amp; Terms of Service</a>
-    </p>
+    <p><a href="legal.html">Privacy Policy &amp; Terms of Service</a></p>
   </footer>
 </body>
 </html>
