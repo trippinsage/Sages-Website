@@ -50,33 +50,33 @@ document.addEventListener('DOMContentLoaded', () => {
   const buttonText = submitButton.querySelector('span');
   const spinner = submitButton.querySelector('.fa-spinner');
 
-  contactForm.addEventListener('submit', async (e) => {
+  contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
     buttonText.style.display = 'none';
     spinner.style.display = 'inline-block';
     submitButton.disabled = true;
 
-    try {
-      const formData = new FormData(contactForm);
-      const response = await fetch(contactForm.action, {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      });
+    // Get form data
+    const name = contactForm.querySelector('input[name="name"]').value;
+    const email = contactForm.querySelector('input[name="email"]').value;
+    const message = contactForm.querySelector('textarea[name="message"]').value;
 
-      if (response.ok) {
-        contactForm.reset();
-        alert('Thank you for your inquiry! We’ll get back to you soon.');
-      } else {
-        throw new Error('Form submission failed');
-      }
-    } catch (error) {
-      alert('An error occurred. Please try again later.');
-    } finally {
+    // Create mailto link
+    const subject = encodeURIComponent('Website Inquiry');
+    const body = encodeURIComponent(`Hi Sages Services,\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n\nThanks,\n${name}`);
+    const mailtoLink = `mailto:sages.services@outlook.com?subject=${subject}&body=${body}`;
+
+    // Open email client
+    window.location.href = mailtoLink;
+
+    // Simulate submission delay, then reset form
+    setTimeout(() => {
+      contactForm.reset();
+      alert('Your inquiry has been sent! Please check your email client to complete the submission.');
       buttonText.style.display = 'inline-block';
       spinner.style.display = 'none';
       submitButton.disabled = false;
-    }
+    }, 1000);
   });
 
   // Portfolio modals

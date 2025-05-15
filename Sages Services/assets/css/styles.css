@@ -311,7 +311,8 @@ p { font-size: clamp(0.875rem, 2vw, 1rem); }
   gap: 1rem;
 }
 
-.contact input, .contact textarea {
+.contact input,
+.contact textarea {
   padding: 0.75rem;
   background: #4B4B4B;
   border: 1px solid #00C4FF;
@@ -321,7 +322,8 @@ p { font-size: clamp(0.875rem, 2vw, 1rem); }
   transition: all 0.3s ease;
 }
 
-.contact input:focus, .contact textarea:focus {
+.contact input:focus,
+.contact textarea:focus {
   outline: none;
   box-shadow: 0 0 8px rgba(0, 196, 255, 0.3);
 }
@@ -352,6 +354,29 @@ p { font-size: clamp(0.875rem, 2vw, 1rem); }
 
 .contact-info a:hover {
   color: #FF6B6B;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  background: #00C4FF;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.cta-button:hover {
+  background: #FF6B6B;
+}
+
+.cta-button:disabled {
+  background: #6B7280;
+  cursor: not-allowed;
 }
 
 .social-links {
