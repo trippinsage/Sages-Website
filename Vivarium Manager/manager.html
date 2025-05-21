@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Manage your vivariums efficiently with Vivarium Manager - a modern, user-friendly tool for tracking and organizing vivarium data.">
+  <meta name="keywords" content="vivarium manager, vivarium tracking, terrarium management, reptile care, aquarium management">
+  <meta name="author" content="Vivarium Manager Team">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Vivarium Manager">
+  <meta property="og:description" content="A powerful tool to manage and track your vivariums with ease.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vivarium-manager.com/manager.html">
+  <meta property="og:image" content="https://vivarium-manager.com/assets/images/og-image.jpg">
+  <title>Vivarium Manager - Efficient Vivarium Tracking Tool</title>
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="manager-container fade-in">
+<header class="manager-header">
+  <div class="header-left">
+    <button id="data-menu-btn" class="menu-btn" aria-label="Open data menu">☰</button>
+    <div id="data-menu" class="data-menu hidden">
+      <button id="download-data" class="menu-item">Download Data</button>
+      <button id="upload-data-btn" class="menu-item">Upload Data</button>
+      <input type="file" id="upload-data" accept="application/json" class="hidden" aria-label="Upload vivarium data file">
+      <button id="settings-btn" class="menu-item">Settings</button>
+      <button id="help-btn" class="menu-item">Help</button>
+    </div>
+  </div>
+  <h1>Vivarium Manager</h1>
+  <a href="/index.html" id="home-button" class="home-button" aria-label="Go to home page">🏠</a>
+</header>
+
+    <main>
+      <div id="notification" class="notification hidden" role="alert"></div>
+      <section class="tab-content" id="home-tab" aria-label="Vivarium management">
+        <div id="dynamic-tab-bar" class="dynamic-tab-bar" role="tablist" aria-label="Open vivarium tabs"></div>
+        <div id="dynamic-tab-content" class="dynamic-tab-content" role="tabpanel" aria-live="polite"></div>
+        <form class="vivarium-form" id="add-vivarium-form" aria-label="Add new vivarium">
+          <label for="vivarium-name">Vivarium Name:</label>
+          <input type="text" id="vivarium-name" placeholder="Vivarium Name" required aria-label="Vivarium name">
+          <label for="vivarium-type">Type:</label>
+          <select id="vivarium-type" aria-label="Vivarium type">
+            <option value="">Select Type</option>
+            <option value="terrarium">Terrarium</option>
+            <option value="aquarium">Aquarium</option>
+            <option value="paludarium">Paludarium</option>
+            <option value="riparium">Riparium</option>
+          </select>
+          <label for="vivarium-size">Size (liters):</label>
+          <input type="number" id="vivarium-size" placeholder="Size (liters)" min="0" step="0.1" aria-label="Vivarium size">
+          <button type="submit" id="add-vivarium-btn" class="btn-theme">+ Add Vivarium</button>
+        </form>
+        <label for="search-vivarium">Search Vivariums:</label>
+        <input type="text" id="search-vivarium" placeholder="Search vivariums" aria-label="Search vivariums">
+        <ul id="vivarium-list" class="vivarium-list" aria-label="List of vivariums"></ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>Copyright © Vivarium Manager</p>
+    </footer>
+  </div>
+  <script src="assets/js/manager.js" defer></script>
+</body>
+</html>
