@@ -21,23 +21,32 @@
 </head>
 <body>
   <div class="manager-container fade-in">
-<header class="manager-header">
-  <div class="header-left">
-    <button id="data-menu-btn" class="menu-btn" aria-label="Open data menu">☰</button>
-    <div id="data-menu" class="data-menu hidden">
-      <button id="download-data" class="menu-item">Download Data</button>
-      <button id="upload-data-btn" class="menu-item">Upload Data</button>
-      <input type="file" id="upload-data" accept="application/json" class="hidden" aria-label="Upload vivarium data file">
-      <button id="settings-btn" class="menu-item">Settings</button>
-      <button id="help-btn" class="menu-item">Help</button>
-    </div>
-  </div>
-  <h1>Vivarium Manager</h1>
-  <a href="/index.html" id="home-button" class="home-button" aria-label="Go to home page">🏠</a>
-</header>
-
+    <header class="manager-header">
+      <div class="header-left">
+        <button id="data-menu-btn" class="menu-btn" aria-label="Open data menu">☰</button>
+        <div id="data-menu" class="data-menu hidden">
+          <a href="/index.html" id="home-button" class="menu-item home-button" aria-label="Go to home page">Home</a>
+          <button id="settings-btn" class="menu-item">Settings</button>
+        </div>
+      </div>
+      <h1>Vivarium Manager</h1>
+    </header>
     <main>
       <div id="notification" class="notification hidden" role="alert"></div>
+      <section id="settings-menu" class="settings-menu hidden" aria-label="Settings">
+        <h2>Settings</h2>
+        <button id="close-settings-btn" class="btn-theme" aria-label="Close settings">Close</button>
+        <div class="settings-section">
+          <h3>Appearance</h3>
+          <button id="theme-toggle" class="btn-theme" aria-label="Toggle theme">Toggle Theme</button>
+        </div>
+        <div class="settings-section">
+          <h3>Data Management</h3>
+          <button id="download-data" class="btn-theme">Download Data</button>
+          <button id="upload-data-btn" class="btn-theme">Upload Data</button>
+          <input type="file" id="upload-data" accept="application/json" class="hidden" aria-label="Upload vivarium data file">
+        </div>
+      </section>
       <section class="tab-content" id="home-tab" aria-label="Vivarium management">
         <div id="dynamic-tab-bar" class="dynamic-tab-bar" role="tablist" aria-label="Open vivarium tabs"></div>
         <div id="dynamic-tab-content" class="dynamic-tab-content" role="tabpanel" aria-live="polite"></div>
@@ -61,9 +70,11 @@
         <ul id="vivarium-list" class="vivarium-list" aria-label="List of vivariums"></ul>
       </section>
     </main>
-
     <footer>
       <p>Copyright © Vivarium Manager</p>
+      <div class="social-links">
+        <a href="https://github.com/trippinsage/Sages-Website/tree/main/Vivarium%20Manager" aria-label="GitHub">GitHub</a>
+      </div>
     </footer>
   </div>
   <script src="assets/js/manager.js" defer></script>

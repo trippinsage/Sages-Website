@@ -1,9 +1,16 @@
 (function() {
   // DOM Elements
   const elements = {
+    dataMenuBtn: document.getElementById("data-menu-btn"),
+    dataMenu: document.getElementById("data-menu"),
+    settingsBtn: document.getElementById("settings-btn"),
+    settingsMenu: document.getElementById("settings-menu"),
+    closeSettingsBtn: document.getElementById("close-settings-btn"),
+    themeToggleBtn: document.getElementById("theme-toggle"),
     downloadDataBtn: document.getElementById("download-data"),
     uploadDataInput: document.getElementById("upload-data"),
     uploadDataBtn: document.getElementById("upload-data-btn"),
+    helpBtn: document.getElementById("help-btn"),
     vivariumNameInput: document.getElementById("vivarium-name"),
     vivariumTypeSelect: document.getElementById("vivarium-type"),
     vivariumSizeInput: document.getElementById("vivarium-size"),
@@ -11,13 +18,8 @@
     vivariumList: document.getElementById("vivarium-list"),
     dynamicTabBar: document.getElementById("dynamic-tab-bar"),
     dynamicTabContent: document.getElementById("dynamic-tab-content"),
-    dataMenuBtn: document.getElementById("data-menu-btn"),
-    dataMenu: document.getElementById("data-menu"),
     searchVivariumInput: document.getElementById("search-vivarium"),
-    notificationDiv: document.getElementById("notification"),
-    themeToggleBtn: document.getElementById("theme-toggle"),
-    settingsBtn: document.getElementById("settings-btn"),
-    helpBtn: document.getElementById("help-btn")
+    notificationDiv: document.getElementById("notification")
   };
 
   // Check for null DOM elements
@@ -39,12 +41,12 @@
           setData(data);
         }
       } else {
-        data = { vivariums: [], settings: {} };
+        data = { vivariums: [], settings: { theme: "dark" } };
       }
       return data;
     } catch (e) {
       console.error("Error parsing localStorage data:", e);
-      return { vivariums: [], settings: {} };
+      return { vivariums: [], settings: { theme: "dark" } };
     }
   };
 
@@ -104,6 +106,7 @@
       const btn = document.createElement("button");
       btn.textContent = opt.label;
       btn.className = "menu-item";
+      btn.setAttribute("aria-label", opt.label);
       btn.addEventListener("click", () => {
         opt.action();
         menu.remove();
@@ -145,33 +148,59 @@
 
   // Theme Management
   const initTheme = () => {
-    const savedTheme = localStorage.getItem("theme");
+    const data = getData();
+    const savedTheme = data.settings.theme || localStorage.getItem("theme") || "dark";
     if (savedTheme === "dark") {
       document.body.classList.add("dark-mode");
       if (elements.themeToggleBtn) {
-        elements.themeToggleBtn.textContent = "☀️";
+        elements.themeToggleBtn.textContent = "Switch to Light Mode";
+      }
+    } else {
+      document.body.classList.remove("dark-mode");
+      if (elements.themeToggleBtn) {
+        elements.themeToggleBtn.textContent = "Switch to Dark Mode";
       }
     }
+    localStorage.setItem("theme", savedTheme);
+    data.settings.theme = savedTheme;
+    setData(data);
   };
 
   const toggleTheme = () => {
+    const data = getData();
     document.body.classList.toggle("dark-mode");
     const isDarkMode = document.body.classList.contains("dark-mode");
     localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+    data.settings.theme = isDarkMode ? "dark" : "light";
+    setData(data);
     if (elements.themeToggleBtn) {
-      elements.themeToggleBtn.textContent = isDarkMode ? "☀️" : "🌙";
+      elements.themeToggleBtn.textContent = isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode";
+    }
+    showNotification(`Switched to ${isDarkMode ? "dark" : "light"} mode`, "success");
+  };
+
+  // Settings Menu
+  const openSettingsMenu = () => {
+    if (elements.settingsMenu && elements.dataMenu) {
+      elements.settingsMenu.classList.remove("hidden");
+      elements.dataMenu.classList.add("hidden");
+    }
+  };
+
+  const closeSettingsMenu = () => {
+    if (elements.settingsMenu) {
+      elements.settingsMenu.classList.add("hidden");
     }
   };
 
   // Initialization
   const initApp = () => {
-    if (!elements.vivariumList || !elements.dataMenu || !elements.uploadDataBtn || !elements.downloadDataBtn) {
+    if (!elements.vivariumList || !elements.dataMenu) {
       console.error("Required DOM elements missing. Cannot initialize app.");
       return;
     }
     elements.dataMenu.classList.add("hidden");
-    elements.uploadDataBtn.classList.remove("hidden");
-    elements.downloadDataBtn.classList.remove("hidden");
+    if (elements.settingsMenu) elements.settingsMenu.classList.add("hidden");
     loadVivariumList();
     initTheme();
   };
@@ -180,7 +209,16 @@
   if (elements.dataMenuBtn && elements.dataMenu) {
     elements.dataMenuBtn.addEventListener("click", () => {
       elements.dataMenu.classList.toggle("hidden");
+      closeSettingsMenu();
     });
+  }
+
+  if (elements.settingsBtn) {
+    elements.settingsBtn.addEventListener("click", openSettingsMenu);
+  }
+
+  if (elements.closeSettingsBtn) {
+    elements.closeSettingsBtn.addEventListener("click", closeSettingsMenu);
   }
 
   if (elements.downloadDataBtn) {
@@ -195,14 +233,13 @@
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-      elements.dataMenu.classList.add("hidden");
+      showNotification("Data downloaded", "success");
     });
   }
 
   if (elements.uploadDataBtn && elements.uploadDataInput) {
     elements.uploadDataBtn.addEventListener("click", () => {
       elements.uploadDataInput.click();
-      elements.dataMenu.classList.add("hidden");
     });
   }
 
@@ -236,18 +273,15 @@
     });
   }
 
-  if (elements.settingsBtn) {
-    elements.settingsBtn.addEventListener("click", () => {
-      showNotification("Settings functionality coming soon!", "info");
-      elements.dataMenu.classList.add("hidden");
-    });
-  }
-
   if (elements.helpBtn) {
     elements.helpBtn.addEventListener("click", () => {
       window.open("help.html", "_blank");
       elements.dataMenu.classList.add("hidden");
     });
+  }
+
+  if (elements.themeToggleBtn) {
+    elements.themeToggleBtn.addEventListener("click", toggleTheme);
   }
 
   // Vivarium Management
@@ -259,11 +293,14 @@
     filteredVivariums.sort((a, b) => a.name.localeCompare(b.name)).forEach((v) => {
       const li = document.createElement("li");
       li.className = "viv-list-item";
+      li.draggable = true;
+      li.dataset.id = v.id;
       li.innerHTML = `
         <span>${sanitizeInput(v.name)}</span>
         <span class="species-count">(${v.species.length} species)</span>
         <button class="viv-menu-btn" aria-label="Vivarium options">⋮</button>
       `;
+      setupVivariumDragEvents(li, v.id);
       const menuBtn = li.querySelector(".viv-menu-btn");
       if (menuBtn) {
         menuBtn.addEventListener("click", (e) => {
@@ -351,6 +388,45 @@
     }
   };
 
+  // Vivarium Drag-and-Drop
+  const setupVivariumDragEvents = (li, id) => {
+    li.addEventListener("dragstart", (e) => {
+      e.dataTransfer.setData("text/plain", id);
+      li.classList.add("dragging");
+    });
+    li.addEventListener("dragend", () => li.classList.remove("dragging"));
+    li.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      const dragging = elements.vivariumList.querySelector(".dragging");
+      if (dragging && dragging !== li) {
+        const rect = li.getBoundingClientRect();
+        const midY = rect.top + rect.height / 2;
+        if (e.clientY < midY) {
+          li.before(dragging);
+        } else {
+          li.after(dragging);
+        }
+      }
+    });
+    li.addEventListener("drop", (e) => {
+      e.preventDefault();
+      const draggedId = e.dataTransfer.getData("text/plain");
+      if (draggedId !== id.toString()) {
+        const data = getData();
+        const draggedIdx = data.vivariums.findIndex(v => v.id === parseInt(draggedId));
+        const targetIdx = data.vivariums.findIndex(v => v.id === parseInt(id));
+        if (draggedIdx > -1 && targetIdx > -1) {
+          const [moved] = data.vivariums.splice(draggedIdx, 1);
+          data.vivariums.splice(targetIdx, 0, moved);
+          if (setData(data)) {
+            loadVivariumList();
+            showNotification("Vivarium reordered", "success");
+          }
+        }
+      }
+    });
+  };
+
   // Dynamic Tabs
   const openDynamicTab = (vivarium) => {
     if (!elements.dynamicTabBar || !elements.dynamicTabContent) return;
@@ -363,10 +439,13 @@
     tabHeader.className = "dynamic-tab-header";
     tabHeader.dataset.id = vivarium.id;
     tabHeader.draggable = true;
+    tabHeader.setAttribute("role", "tab");
+    tabHeader.setAttribute("aria-selected", "false");
     tabHeader.innerHTML = `<span>${sanitizeInput(vivarium.name)}</span>`;
     const closeBtn = document.createElement("button");
     closeBtn.textContent = "X";
     closeBtn.className = "dynamic-tab-close";
+    closeBtn.setAttribute("aria-label", `Close ${vivarium.name} tab`);
     closeBtn.addEventListener("click", (e) => {
       e.stopPropagation();
       removeDynamicTab(vivarium.id);
@@ -379,6 +458,8 @@
     const tabContent = document.createElement("div");
     tabContent.className = "dynamic-tab-content-item hidden";
     tabContent.dataset.id = vivarium.id;
+    tabContent.setAttribute("role", "tabpanel");
+    tabContent.setAttribute("aria-labelledby", `tab-${vivarium.id}`);
     buildVivariumDetailUI(tabContent, vivarium.id);
     elements.dynamicTabContent.appendChild(tabContent);
     selectDynamicTab(vivarium.id);
@@ -386,11 +467,17 @@
 
   const selectDynamicTab = (id) => {
     if (!elements.dynamicTabBar || !elements.dynamicTabContent) return;
-    elements.dynamicTabBar.querySelectorAll(".dynamic-tab-header").forEach(h => h.classList.remove("active"));
+    elements.dynamicTabBar.querySelectorAll(".dynamic-tab-header").forEach(h => {
+      h.classList.remove("active");
+      h.setAttribute("aria-selected", "false");
+    });
     elements.dynamicTabContent.querySelectorAll(".dynamic-tab-content-item").forEach(c => c.classList.add("hidden"));
     const header = elements.dynamicTabBar.querySelector(`[data-id="${id}"]`);
     const content = elements.dynamicTabContent.querySelector(`[data-id="${id}"]`);
-    if (header) header.classList.add("active");
+    if (header) {
+      header.classList.add("active");
+      header.setAttribute("aria-selected", "true");
+    }
     if (content) content.classList.remove("hidden");
   };
 
@@ -433,8 +520,10 @@
         if (draggedIdx > -1 && targetIdx > -1) {
           const [moved] = data.vivariums.splice(draggedIdx, 1);
           data.vivariums.splice(targetIdx, 0, moved);
-          setData(data);
-          loadVivariumList();
+          if (setData(data)) {
+            loadVivariumList();
+            showNotification("Tab reordered", "success");
+          }
         }
       }
     });
@@ -463,21 +552,21 @@
         <h4>Species</h4>
         <div class="species-list"></div>
         <form class="add-species-form">
-          <input type="text" placeholder="Species name" class="species-name-input" required>
-          <input type="number" placeholder="Qty" min="1" value="1" class="species-qty-input">
+          <input type="text" placeholder="Species name" class="species-name-input" required aria-label="Species name">
+          <input type="number" placeholder="Qty" min="1" value="1" class="species-qty-input" aria-label="Species quantity">
           <button type="submit" class="btn-theme add-species-btn">+ Add</button>
         </form>
       </div>
       <div class="notes-section">
         <h4>Notes</h4>
-        <textarea class="viv-notes" placeholder="Add care notes...">${sanitizeInput(viv.notes)}</textarea>
+        <textarea class="viv-notes" placeholder="Add care notes..." aria-label="Vivarium notes">${sanitizeInput(viv.notes)}</textarea>
         <button class="btn-theme save-notes-btn">Save Notes</button>
       </div>
       <div class="log-section">
         <h4>Logs</h4>
         <ul class="log-list"></ul>
         <form class="add-log-form">
-          <input type="text" class="log-input" placeholder="Log event (e.g., Fed crickets)">
+          <input type="text" class="log-input" placeholder="Log event (e.g., Fed crickets)" aria-label="Log entry">
           <button type="submit" class="btn-theme add-log-btn">+ Add</button>
         </form>
       </div>
@@ -600,6 +689,7 @@
         }
         viv.species.push({ name, quantity: qty });
         if (setData(data)) {
+          addSpeciesForm.reset();
           buildVivariumDetailUI(container, id);
           showNotification("Species added", "success");
         }
@@ -646,9 +736,13 @@
       addLogForm.addEventListener("submit", (e) => {
         e.preventDefault();
         const text = sanitizeInput(addLogForm.querySelector(".log-input").value);
-        if (!text) return;
+        if (!text) {
+          showNotification("Please enter a log entry", "error");
+          return;
+        }
         viv.logs.push({ timestamp: new Date().toLocaleString(), text });
         if (setData(data)) {
+          addLogForm.reset();
           buildVivariumDetailUI(container, id);
           showNotification("Log added", "success");
         }
@@ -716,9 +810,11 @@
     if (!isNaN(newQty) && newQty >= 0) {
       species.quantity = newQty;
     }
-    if (setData(data)) {
-      buildVivariumDetailUI(elements.dynamicTabContent.querySelector(`[data-id="${vivId}"]`), vivId);
-      showNotification("Species updated", "success");
+    if (newName || (!isNaN(newQty) && newQty >= 0)) {
+      if (setData(data)) {
+        buildVivariumDetailUI(elements.dynamicTabContent.querySelector(`[data-id="${vivId}"]`), vivId);
+        showNotification("Species updated", "success");
+      }
     }
   };
 
@@ -774,8 +870,13 @@
     }
     if (e.key === "Escape") {
       elements.dataMenu?.classList.add("hidden");
+      closeSettingsMenu();
       const menu = document.querySelector(".custom-menu, .data-menu-options, .species-menu, .log-menu, .vivarium-menu, .species-edit-menu, .log-edit-menu");
       if (menu) menu.remove();
+    }
+    if (e.altKey && e.key === "s") {
+      e.preventDefault();
+      openSettingsMenu();
     }
   });
 
@@ -785,6 +886,7 @@
     const tabs = elements.dynamicTabBar.children;
     if (window.innerWidth < 768 && tabs.length > 3) {
       elements.dynamicTabBar.style.overflowX = "auto";
+      elements.dynamicTabBar.style.webkitOverflowScrolling = "touch";
     } else {
       elements.dynamicTabBar.style.overflowX = "visible";
     }
@@ -792,9 +894,6 @@
 
   // Event Listeners
   window.addEventListener("resize", adjustLayout);
-  if (elements.themeToggleBtn) {
-    elements.themeToggleBtn.addEventListener("click", toggleTheme);
-  }
   window.addEventListener("DOMContentLoaded", () => {
     document.body.classList.add("loaded");
     initApp();

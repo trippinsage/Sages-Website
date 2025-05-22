@@ -28,9 +28,27 @@ body.loaded {
   opacity: 1;
 }
 
+body.dark-mode {
+  /* Dark mode is default; no additional styles needed */
+}
+
+body:not(.dark-mode) {
+  --background-color: #FFFFFF;
+  --text-color: #1A1A1A;
+  --accent-color: #E0E0E0;
+  --shadow-color: rgba(0, 164, 214, 0.3);
+}
+
 .manager-container {
   max-width: 100%;
   margin: 0 auto;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
 }
 
 h3 {
@@ -53,7 +71,7 @@ h4 {
   justify-content: space-between;
   align-items: center;
   background: linear-gradient(to bottom, rgba(26, 26, 26, 0.95), rgba(26, 26, 26, 0.85));
-  padding: 1.25rem;
+  padding: 1rem;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
   border-radius: 16px;
   border-bottom: 2px solid var(--primary-color);
@@ -76,67 +94,21 @@ h4 {
   gap: 1rem;
 }
 
-.home-button {
-  background: transparent;
-  color: var(--text-color);
-  font-size: clamp(1rem, 2.5vw, 1.125rem);
-  padding: 0.5rem 0.75rem;
-  border: 2px solid var(--primary-color);
-  border-radius: 8px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 3px 8px var(--shadow-color);
-}
-
-.home-button:hover {
-  background: var(--primary-color);
-  color: var(--background-color);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 12px rgba(0, 196, 255, 0.5);
-  filter: brightness(1.2);
-}
-
-.home-button:focus {
-  outline: 2px solid var(--primary-color);
-  outline-offset: 3px;
-}
-
 .menu-btn {
   background: var(--accent-color);
   color: var(--text-color);
-  padding: 0.875rem 1.5rem;
+  padding: 0.75rem 1.25rem;
   border: none;
   border-radius: 50px;
   cursor: pointer;
   font-weight: 600;
+  font-size: 1rem;
   transition: all 0.3s ease;
   box-shadow: 0 5px 15px var(--shadow-color);
 }
 
 .menu-btn:hover {
-  transform: translateY(-4px);
-  background: #5A5A5A;
-  box-shadow: 0 8px 20px var(--shadow-color);
-}
-
-/* Theme Toggle Button */
-.theme-toggle {
-  background: var(--accent-color);
-  color: var(--text-color);
-  padding: 0.875rem 1.5rem;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 5px 15px var(--shadow-color);
-}
-
-.theme-toggle:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   background: #5A5A5A;
   box-shadow: 0 8px 20px var(--shadow-color);
 }
@@ -153,7 +125,7 @@ h4 {
   position: absolute;
   background: var(--accent-color);
   border-radius: 16px;
-  padding: 0.625rem;
+  padding: 0.75rem;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   z-index: 1000;
   min-width: 150px;
@@ -164,20 +136,51 @@ h4 {
   width: 100%;
   background: #5A5A5A;
   color: var(--text-color);
-  padding: 0.625rem 1rem;
-  margin: 2px 0;
+  padding: 0.75rem 1rem;
+  margin: 4px 0;
   border: none;
   border-radius: 8px;
   text-align: left;
   cursor: pointer;
   font-weight: 600;
+  font-size: 0.9375rem;
   transition: all 0.3s ease;
 }
 
 .menu-item:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
   background: #6B6B6B;
   box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+.home-button {
+  background: #5A5A5A;
+  color: var(--text-color);
+  text-decoration: none;
+  text-align: left;
+}
+
+/* Settings Menu */
+.settings-menu {
+  background: var(--accent-color);
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  margin: 1rem 0;
+}
+
+.settings-menu h2 {
+  margin-top: 0;
+}
+
+.settings-section {
+  margin: 1.5rem 0;
+}
+
+.settings-section button {
+  display: block;
+  width: 100%;
+  margin: 0.5rem 0;
 }
 
 /* Vivarium List */
@@ -189,7 +192,7 @@ h4 {
 .viv-list-item {
   background: var(--accent-color);
   padding: 1rem;
-  margin: 8px 0;
+  margin: 0.75rem 0;
   border-radius: 16px;
   display: flex;
   justify-content: space-between;
@@ -200,7 +203,7 @@ h4 {
 }
 
 .viv-list-item:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
   background: #5A5A5A;
   box-shadow: 0 10px 20px var(--shadow-color);
 }
@@ -234,11 +237,13 @@ h4 {
 .action-btn,
 .add-species-btn,
 .save-notes-btn,
-.add-log-btn {
+.add-log-btn,
+#close-settings-btn {
   background: linear-gradient(45deg, var(--primary-color), #00A1D6);
   color: var(--text-color);
-  padding: 0.875rem 1.5rem;
+  padding: 0.75rem 1.25rem;
   font-weight: 600;
+  font-size: 0.9375rem;
   border: none;
   border-radius: 50px;
   cursor: pointer;
@@ -250,8 +255,9 @@ h4 {
 .action-btn:hover,
 .add-species-btn:hover,
 .save-notes-btn:hover,
-.add-log-btn:hover {
-  transform: translateY(-4px);
+.add-log-btn:hover,
+#close-settings-btn:hover {
+  transform: translateY(-2px);
   background: linear-gradient(45deg, #00A1D6, #008BBF);
   box-shadow: 0 8px 20px var(--shadow-color);
 }
@@ -264,12 +270,13 @@ h4 {
   margin-left: 8px;
   border-radius: 8px;
   cursor: pointer;
+  font-size: 0.875rem;
   transition: all 0.3s ease;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .dynamic-tab-close:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   background: #ff5555;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
@@ -277,15 +284,17 @@ h4 {
 /* Dynamic Tabs */
 .dynamic-tab-bar {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin: 15px 0;
-  padding-bottom: 6px;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 1rem 0;
+  padding-bottom: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .dynamic-tab-header {
   background: var(--accent-color);
-  padding: 0.875rem 1rem;
+  padding: 0.75rem 1rem;
   border-radius: 16px;
   border: 1px solid #5A5A5A;
   display: flex;
@@ -294,6 +303,8 @@ h4 {
   transition: all 0.3s ease;
   cursor: pointer;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  flex: 0 0 auto;
+  min-width: 120px;
 }
 
 .dynamic-tab-header.active {
@@ -303,14 +314,14 @@ h4 {
 }
 
 .dynamic-tab-header:hover:not(.active) {
-  transform: scale(1.05);
+  transform: scale(1.02);
   background: #5A5A5A;
   box-shadow: 0 10px 20px var(--shadow-color);
 }
 
 .dynamic-tab-content-item {
   background: var(--accent-color);
-  padding: 1rem;
+  padding: 1.25rem;
   border-radius: 16px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
@@ -322,7 +333,7 @@ h4 {
 }
 
 .header-actions {
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
 }
 
 /* Forms & Inputs */
@@ -330,10 +341,18 @@ h4 {
 .add-species-form,
 .add-log-form {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin: 15px 0;
-  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 1.5rem 0;
+  align-items: center;
+}
+
+.vivarium-form label,
+.add-species-form label,
+.add-log-form label {
+  flex: 0 0 100%;
+  font-size: 0.9375rem;
+  color: var(--text-color);
 }
 
 input,
@@ -344,13 +363,17 @@ textarea {
   border-radius: 8px;
   color: var(--text-color);
   padding: 0.75rem;
-  width: 100%;
+  font-size: 0.9375rem;
   font-family: inherit;
+  flex: 1;
+  min-width: 120px;
+  touch-action: manipulation;
 }
 
 textarea {
-  min-height: 100px;
+  min-height: 120px;
   resize: vertical;
+  width: 100%;
 }
 
 input:focus,
@@ -361,15 +384,20 @@ textarea:focus {
   box-shadow: 0 0 5px var(--shadow-color);
 }
 
+.species-qty-input {
+  max-width: 80px;
+}
+
 /* Search Input */
 #search-vivarium {
-  margin: 15px 0;
+  margin: 1.5rem 0;
   padding: 0.75rem;
   background: #5A5A5A;
   border: 1px solid #6B6B6B;
   border-radius: 8px;
   color: var(--text-color);
   width: 100%;
+  font-size: 0.9375rem;
 }
 
 #search-vivarium:focus {
@@ -389,6 +417,8 @@ textarea:focus {
   transition: opacity 0.5s ease;
   opacity: 1;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  max-width: 90%;
+  word-break: break-word;
 }
 
 .notification.hidden {
@@ -411,13 +441,13 @@ textarea:focus {
 .species-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .species-section,
 .notes-section,
 .log-section {
-  margin: 15px 0;
+  margin: 1.5rem 0;
 }
 
 .species-item {
@@ -432,7 +462,7 @@ textarea:focus {
 }
 
 .species-item:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
   background: #5A5A5A;
   box-shadow: 0 10px 20px var(--shadow-color);
 }
@@ -456,7 +486,7 @@ textarea:focus {
 .log-list li {
   background: var(--accent-color);
   padding: 0.75rem;
-  margin: 8px 0;
+  margin: 0.75rem 0;
   border-radius: 16px;
   display: flex;
   justify-content: space-between;
@@ -467,7 +497,7 @@ textarea:focus {
 }
 
 .log-list li:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
   background: #5A5A5A;
   box-shadow: 0 10px 20px var(--shadow-color);
 }
@@ -481,6 +511,7 @@ textarea:focus {
   align-self: flex-end;
   width: auto;
   min-width: 100px;
+  margin-top: 0.5rem;
 }
 
 /* Footer */
@@ -490,7 +521,7 @@ footer {
   border-radius: 16px;
   font-size: 0.9375rem;
   color: var(--text-color);
-  margin-top: 20px;
+  margin-top: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -502,16 +533,129 @@ footer p {
   margin: 0.625rem 0;
 }
 
+.social-links a {
+  font-size: 1.5rem;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  color: var(--primary-color);
+  transform: scale(1.1);
+}
+
 /* Hidden Class */
 .hidden {
   display: none;
 }
 
-/* Desktop Adjustments */
+/* Mobile Adjustments */
+@media (max-width: 767px) {
+  body {
+    padding: 10px;
+  }
+
+  .manager-container {
+    padding: 10px;
+  }
+
+  .manager-header {
+    padding: 0.75rem;
+  }
+
+  .menu-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .data-menu {
+    min-width: 120px;
+  }
+
+  .menu-item {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .settings-menu {
+    padding: 1rem;
+  }
+
+  .settings-section button {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .vivarium-form,
+  .add-species-form,
+  .add-log-form {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  input,
+  select,
+  textarea {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .btn-theme,
+  .action-btn,
+  .add-species-btn,
+  .save-notes-btn,
+  .add-log-btn,
+  #close-settings-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .dynamic-tab-bar {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .dynamic-tab-header {
+    min-width: 100px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .dynamic-tab-close {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .viv-list-item,
+  .species-item,
+  .log-list li {
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+  }
+
+  #search-vivarium {
+    margin: 1rem 0;
+    padding: 0.5rem;
+  }
+
+  .notification {
+    top: 10px;
+    right: 10px;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Tablet and Desktop Adjustments */
 @media (min-width: 768px) {
   .manager-container {
     max-width: 1000px;
     padding: 20px;
+  }
+
+  .manager-header {
+    padding: 1.25rem;
   }
 
   footer {
@@ -521,37 +665,33 @@ footer p {
     padding: 1.5rem 2rem;
   }
 
-  .manager-header {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .header-left {
-    margin-bottom: 0;
-  }
-
-  .dynamic-tab-bar {
-    flex-direction: row;
-    gap: 8px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
   .vivarium-form,
   .add-species-form,
   .add-log-form {
     flex-direction: row;
-    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .vivarium-form label,
+  .add-species-form label,
+  .add-log-form label {
+    flex: 0 0 auto;
+    min-width: 100px;
   }
 
   .add-species-form input,
   .add-log-form input {
-    margin-right: 10px;
     flex: 1;
   }
 
   .add-species-form .species-qty-input {
-    flex: 0 0 60px;
+    flex: 0 0 80px;
+  }
+
+  .settings-section button {
+    width: auto;
+    min-width: 200px;
   }
 }
 
@@ -574,7 +714,8 @@ footer p {
 button:focus,
 input:focus,
 select:focus,
-textarea:focus {
+textarea:focus,
+a:focus {
   outline: 2px solid var(--primary-color);
-  outline-offset: 3px;
+  outline-offset: 2px;
 }
