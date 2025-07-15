@@ -62,9 +62,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const message = contactForm.querySelector('textarea[name="message"]').value;
 
     // Create mailto link
-    const subject = encodeURIComponent('Website Inquiry');
-    const body = encodeURIComponent(`Hi Sages Services,\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n\nThanks,\n${name}`);
-    const mailtoLink = `mailto:sages.services@outlook.com?subject=${subject}&body=${body}`;
+   const subject = encodeURIComponent('Website Inquiry');
+   const body = encodeURIComponent(message);
+   const mailtoLink = `mailto:sages.services@outlook.com?subject=${subject}&body=${body}`;
 
     // Open email client
     window.location.href = mailtoLink;

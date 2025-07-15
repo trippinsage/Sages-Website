@@ -62,8 +62,8 @@ p { font-size: clamp(0.875rem, 2vw, 1rem); }
 }
 
 .navbar {
-  background: rgba(26, 26, 26, 0.95);
-  padding: 1rem 1.5rem;
+  background: linear-gradient(to bottom, rgba(26, 26, 26, 0.95), rgba(26, 26, 26, 0.85));
+  padding: 1.25rem 2rem;
   position: fixed;
   width: 100%;
   top: 0;
@@ -71,72 +71,59 @@ p { font-size: clamp(0.875rem, 2vw, 1rem); }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: background 0.3s ease, padding 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
 }
 
 .navbar.scrolled {
-  padding: 0.75rem 1.5rem;
+  padding: 0.875rem 2rem;
   background: #1A1A1A;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
 .logo h1 {
-  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-size: clamp(1.375rem, 3.25vw, 1.625rem);
   color: #00C4FF;
   font-weight: 900;
+  text-shadow: 0 0 5px rgba(0, 196, 255, 0.2);
 }
 
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .nav-links li a {
   color: #FFFFFF;
   text-decoration: none;
-  font-size: clamp(0.875rem, 2vw, 1rem);
+  font-size: clamp(0.9375rem, 2.25vw, 1.0625rem);
   font-weight: 600;
-  position: relative;
-  transition: color 0.3s ease;
-  padding: 0.5rem;
-}
-
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -3px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: #00C4FF;
-  transition: width 0.3s ease;
-}
-
-.nav-links a:hover::after, .nav-links a.active::after {
-  width: 100%;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .nav-links a:hover, .nav-links a.active {
-  color: #00C4FF;
+  transform: scale(1.05);
+  filter: brightness(1.2);
 }
 
 .hamburger {
   display: none;
   flex-direction: column;
   cursor: pointer;
-  gap: 4px;
+  gap: 5px;
 }
 
 .hamburger span {
   background: #FFFFFF;
-  width: 28px;
+  width: 30px;
   height: 3px;
+  border-radius: 2px;
   transition: all 0.3s ease;
 }
 
 .hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
+  transform: rotate(45deg) translate(6px, 6px);
 }
 
 .hamburger.active span:nth-child(2) {
@@ -144,7 +131,7 @@ p { font-size: clamp(0.875rem, 2vw, 1rem); }
 }
 
 .hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(7px, -7px);
+  transform: rotate(-45deg) translate(8px, -8px);
 }
 
 .hero {
@@ -195,6 +182,8 @@ p { font-size: clamp(0.875rem, 2vw, 1rem); }
   touch-action: manipulation;
   min-width: 120px;
   justify-content: center;
+  border: none;
+  cursor: pointer;
 }
 
 .cta-button.secondary {
@@ -204,7 +193,7 @@ p { font-size: clamp(0.875rem, 2vw, 1rem); }
 }
 
 .cta-button:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   box-shadow: 0 6px 18px rgba(0, 196, 255, 0.3);
   background: #FF6B6B;
   color: #fff;
@@ -213,6 +202,11 @@ p { font-size: clamp(0.875rem, 2vw, 1rem); }
 .cta-button.secondary:hover {
   background: #FF6B6B;
   border-color: #FF6B6B;
+}
+
+.cta-button:disabled {
+  background: #6B7280;
+  cursor: not-allowed;
 }
 
 .services, .portfolio, .contact {
@@ -258,14 +252,14 @@ p { font-size: clamp(0.875rem, 2vw, 1rem); }
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  height: 250px;
+  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .portfolio-img {
-  max-width: 180px;
+  max-width: 240px;
   height: auto;
   object-fit: contain;
   margin: auto;
@@ -354,29 +348,6 @@ p { font-size: clamp(0.875rem, 2vw, 1rem); }
 
 .contact-info a:hover {
   color: #FF6B6B;
-}
-
-.cta-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem 1.5rem;
-  background: #00C4FF;
-  color: #FFFFFF;
-  border: none;
-  border-radius: 8px;
-  font-size: clamp(0.875rem, 2vw, 1rem);
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.cta-button:hover {
-  background: #FF6B6B;
-}
-
-.cta-button:disabled {
-  background: #6B7280;
-  cursor: not-allowed;
 }
 
 .social-links {
@@ -500,40 +471,79 @@ a:focus, button:focus, input:focus, textarea:focus, .hamburger:focus {
 }
 
 @media (max-width: 768px) {
+  .navbar {
+    padding: 1.25rem 2rem;
+    flex-wrap: wrap;
+  }
+
+  .logo h1 {
+    padding-top: 15%;
+    font-size: clamp(1.375rem, 3.25vw, 1.625rem);
+  }
+
   .nav-links {
     display: none;
     flex-direction: column;
     position: absolute;
-    top: 60px;
+    top: 70px;
     left: 0;
     width: 100%;
     background: #1A1A1A;
-    padding: 0.75rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    align-items: center;
+    z-index: 999;
   }
+
   .nav-links.active {
     display: flex;
   }
+
   .nav-links li {
-    margin: 0.5rem 0;
+    margin: 0.625rem 0;
   }
+
+  .nav-links li a {
+    font-size: clamp(0.9375rem, 2.25vw, 1.0625rem);
+    padding: 0.75rem;
+    display: block;
+    text-align: center;
+    width: 100%;
+  }
+
   .hamburger {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    z-index: 1000;
   }
+
+  .hamburger span {
+    width: 30px;
+    height: 3px;
+    border-radius: 2px;
+  }
+
   .hero {
     padding: 1rem;
   }
+
   .portfolio-item {
-    height: 200px;
+    height: 250px;
   }
+
   .portfolio-img {
-    max-width: 150px;
+    max-width: 200px;
   }
+
   .cta-button {
     padding: 0.75rem 1.5rem;
     font-size: clamp(0.875rem, 2vw, 0.9375rem);
     min-width: 100px;
+    text-align: center;
   }
+
   .contact-container {
     grid-template-columns: 1fr;
   }
@@ -544,19 +554,24 @@ a:focus, button:focus, input:focus, textarea:focus, .hamburger:focus {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
+
   .cta-button {
     padding: 0.625rem 1.25rem;
     font-size: 0.875rem;
   }
+
   .services, .portfolio, .contact {
     padding: 1.5rem 1rem;
   }
+
   .service-card {
     padding: 1rem;
   }
+
   .contact input, .contact textarea {
     padding: 0.625rem;
   }
+
   .modal-content {
     padding: 1rem;
     width: 95%;
