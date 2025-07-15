@@ -136,7 +136,7 @@ p { font-size: clamp(0.875rem, 2vw, 1rem); }
 
 .hero {
   min-height: 100vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../img/hero-bg.jpg') fixed center/cover;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../img/hero-bg.webp') fixed center/cover;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -159,7 +159,7 @@ p { font-size: clamp(0.875rem, 2vw, 1rem); }
   margin-bottom: 1.5rem;
 }
 
-.hero-buttons {
+ hero-buttons {
   display: flex;
   gap: 1rem;
   justify-content: center;
@@ -217,9 +217,18 @@ p { font-size: clamp(0.875rem, 2vw, 1rem); }
   background: #1A1A1A;
 }
 
-.service-grid, .portfolio-grid {
+.service-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
   max-width: 1000px;
   width: 100%;
@@ -250,23 +259,25 @@ p { font-size: clamp(0.875rem, 2vw, 1rem); }
   position: relative;
   overflow: hidden;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #2A2A2A;
+  border: 2px solid #00C4FF;
 }
 
 .portfolio-img {
-  max-width: 240px;
-  height: auto;
-  object-fit: contain;
-  margin: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
 .portfolio-item:hover .portfolio-img {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .portfolio-overlay {
@@ -283,7 +294,7 @@ p { font-size: clamp(0.875rem, 2vw, 1rem); }
   align-items: center;
   opacity: 0;
   transition: opacity 0.3s ease;
-  padding: 0.75rem;
+  padding: 1rem;
   text-align: center;
 }
 
@@ -477,7 +488,6 @@ a:focus, button:focus, input:focus, textarea:focus, .hamburger:focus {
   }
 
   .logo h1 {
-    padding-top: 15%;
     font-size: clamp(1.375rem, 3.25vw, 1.625rem);
   }
 
@@ -534,7 +544,8 @@ a:focus, button:focus, input:focus, textarea:focus, .hamburger:focus {
   }
 
   .portfolio-img {
-    max-width: 200px;
+    width: 100%;
+    height: 100%;
   }
 
   .cta-button {

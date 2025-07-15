@@ -56,20 +56,16 @@ document.addEventListener('DOMContentLoaded', () => {
     spinner.style.display = 'inline-block';
     submitButton.disabled = true;
 
-    // Get form data
     const name = contactForm.querySelector('input[name="name"]').value;
     const email = contactForm.querySelector('input[name="email"]').value;
     const message = contactForm.querySelector('textarea[name="message"]').value;
 
-    // Create mailto link
-   const subject = encodeURIComponent('Website Inquiry');
-   const body = encodeURIComponent(message);
-   const mailtoLink = `mailto:sages.services@outlook.com?subject=${subject}&body=${body}`;
+    const subject = encodeURIComponent('Custom Solution Inquiry');
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nMessage: ${message}`);
+    const mailtoLink = `mailto:sages.services@outlook.com?subject=${subject}&body=${body}`;
 
-    // Open email client
     window.location.href = mailtoLink;
 
-    // Simulate submission delay, then reset form
     setTimeout(() => {
       contactForm.reset();
       alert('Your inquiry has been sent! Please check your email client to complete the submission.');
@@ -90,15 +86,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const projectData = {
     eastcoastpets: {
-      img: 'assets/img/misc/ecp-logo.jpg',
+      img: 'assets/img/misc/ecp-logo.webp',
       title: 'East Coast Pets',
-      description: 'A vibrant site for a local pet care business, driving customer engagement.',
+      description: 'A vibrant, SEO-optimized website for a local pet care business, enhancing client engagement.',
       link: 'https://eastcoastpets.ca'
     },
     ptmpets: {
-      img: 'assets/img/misc/ptm.png',
+      img: 'assets/img/misc/ptm.webp',
       title: 'PTM Pets',
-      description: 'A user-friendly site for a local pet service, optimized for mobile and SEO.',
+      description: 'A mobile-optimized, user-friendly website for a pet service, built for maximum SEO impact.',
       link: 'https://ptmpets.com'
     }
   };
@@ -126,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   modal.addEventListener('click', (e) => {
     if (e.target === modal) {
-      modal.classList.remove('show');
+      modal.classList.remove('show,');
       setTimeout(() => modal.style.display = 'none', 300);
     }
   });
