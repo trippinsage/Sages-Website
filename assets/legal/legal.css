@@ -34,9 +34,9 @@ h1, h2, h3 {
   text-align: center;
 }
 
-h1 { font-size: clamp(2.25rem, 5.5vw, 3.75rem); margin-bottom: 1rem; }
-h2 { font-size: clamp(1.875rem, 4.5vw, 2.75rem); margin-bottom: 0.75rem; }
-h3 { font-size: clamp(1.25rem, 3vw, 1.625rem); margin-bottom: 0.75rem; }
+h1 { font-size: clamp(2rem, 4.5vw, 3rem); margin-bottom: 1rem; }
+h2 { font-size: clamp(1.5rem, 3.5vw, 2rem); margin: 1rem 0 0.5rem; }
+h3 { font-size: clamp(1.125rem, 2.75vw, 1.375rem); margin: 0.75rem 0 0.25rem; }
 p { font-size: clamp(0.9375rem, 2.25vw, 1.0625rem); color: var(--text-color); }
 
 .section-subtitle {
@@ -56,38 +56,6 @@ a {
 a:hover {
   transform: scale(1.05);
   filter: brightness(1.2);
-}
-
-.hero {
-  min-height: 60vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('/assets/img/hero-bg.webp') fixed center/cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 1.5rem;
-}
-
-.hero-content {
-  max-width: 800px;
-  animation: fadeInUp 1s ease-out;
-}
-
-.hero h1 {
-  color: var(--primary-color);
-  text-shadow: 0 3px 10px var(--shadow-color);
-}
-
-.hero p {
-  font-size: clamp(1.0625rem, 2.75vw, 1.375rem);
-  margin-bottom: 1.5rem;
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
 }
 
 .cta-button {
@@ -127,86 +95,6 @@ a:hover {
   background: var(--primary-dark);
   border-color: var(--primary-dark);
   box-shadow: 0 8px 20px var(--shadow-color);
-}
-
-.social-section, .journey-section, .legal-section {
-  padding: clamp(2rem, 5vw, 4rem) 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: var(--background-color);
-}
-
-.social-grid, .gallery {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.5rem;
-  max-width: 1200px;
-  width: 100%;
-  margin-bottom: 1.5rem;
-}
-
-.social-item {
-  background: var(--accent-color);
-  padding: 1.5rem;
-  border-radius: 16px;
-  text-align: center;
-  transition: all 0.4s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.social-item i {
-  font-size: 2.5rem;
-  color: var(--primary-color);
-  margin-bottom: 0.75rem;
-}
-
-.social-item p {
-  color: var(--text-color);
-}
-
-.social-item:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 20px var(--shadow-color);
-  background: #444444;
-}
-
-.gallery figure {
-  margin: 0;
-  position: relative;
-  overflow: hidden;
-  border-radius: 16px;
-}
-
-.gallery img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 16px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.gallery img:hover {
-  transform: scale(1.12);
-  box-shadow: 0 10px 20px var(--shadow-color);
-}
-
-.gallery figcaption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.8);
-  color: var(--text-color);
-  padding: 0.625rem;
-  font-size: 0.9375rem;
-  transform: translateY(100%);
-  transition: transform 0.4s ease;
-}
-
-.gallery figure:hover figcaption {
-  transform: translateY(0);
 }
 
 .legal-section {
@@ -286,24 +174,6 @@ footer a:not(.cta-button):hover {
   filter: brightness(1.2);
 }
 
-.social-links {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin: 0.75rem 0;
-}
-
-.social-links a {
-  font-size: 1.5rem;
-  color: var(--text-color);
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-.social-links a:hover {
-  transform: scale(1.1);
-  filter: brightness(1.2);
-}
-
 .animate-on-scroll {
   opacity: 0;
   transform: translateY(50px);
@@ -315,43 +185,37 @@ footer a:not(.cta-button):hover {
   transform: translateY(0);
 }
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 a:focus, button:focus {
   outline: 2px solid var(--primary-color);
   outline-offset: 3px;
 }
 
 @media (max-width: 768px) {
-  .hero {
+  .legal-section {
+    padding: 1.5rem 1rem;
+  }
+  .legal-container {
     padding: 1rem;
-  }
-  .social-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .gallery {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  }
-  .social-grid, .gallery {
-    gap: 1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .social-section, .journey-section, .legal-section {
-    padding: 1.5rem 1rem;
+  .legal-section {
+    padding: 1.5rem 0.75rem;
   }
-  .social-item, .legal-container {
-    padding: 1rem;
+  .legal-container {
+    padding: 0.75rem;
   }
-  .gallery img {
-    height: 160px;
+  .legal-container h1 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
   }
-  .cta-button {
-    padding: 0.75rem 1.5rem;
-    font-size: 0.9375rem;
+  .legal-container h2 {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+  }
+  .legal-container h3 {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+  }
+  .legal-container p {
+    font-size: clamp(0.875rem, 2vw, 1rem);
   }
 }
